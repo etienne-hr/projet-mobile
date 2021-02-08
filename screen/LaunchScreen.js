@@ -27,9 +27,17 @@ export const LaunchScreen = (props) => {
   }, []);
 
   const displayGenderList = (props) => {
-    props.navigation.navigate("Result");
+    props.navigation.navigate("Genre");
   };
-  const renderItem = ({ item }) => <ButtonGenre title={item.name} />;
+
+  const renderItem = ({ item }) => (
+    <ButtonGenre
+      title={item.name}
+      displayGenderList={() => {
+        displayGenderList;
+      }}
+    />
+  );
 
   return (
     <SafeAreaView>
