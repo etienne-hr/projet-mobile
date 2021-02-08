@@ -7,14 +7,10 @@ import {
   SafeAreaView,
   FlatList,
   ActivityIndicator,
+  Button,
 } from "react-native";
 import { getGenre } from "../services/movie";
-
-const Item = ({ title }) => (
-  <View>
-    <Text>{title}</Text>
-  </View>
-);
+import { ButtonGenre } from "../components/ButtonGenre";
 
 export const LaunchScreen = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +26,7 @@ export const LaunchScreen = (props) => {
     asyncGenre();
   }, []);
 
-  const renderItem = ({ item }) => <Item title={item.name} />;
+  const renderItem = ({ item }) => <ButtonGenre title={item.name} />;
   return (
     <SafeAreaView>
       <View>
