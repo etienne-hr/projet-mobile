@@ -26,7 +26,11 @@ export const LaunchScreen = (props) => {
     asyncGenre();
   }, []);
 
+  const displayGenderList = (props) => {
+    props.navigation.navigate("Result");
+  };
   const renderItem = ({ item }) => <ButtonGenre title={item.name} />;
+
   return (
     <SafeAreaView>
       <View>
