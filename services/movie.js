@@ -41,3 +41,12 @@ export function getGenre() {
     })
   ).then((result) => result.json());
 }
+
+export function getFilmByGenre(id) {
+  return fetch(
+    getApiUrl("/discover/movie", {
+      language: "fr-FR",
+      with_genres: id,
+    })
+  ).then((result) => result.json());
+}

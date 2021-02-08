@@ -12,7 +12,7 @@ import {
 import { getGenre } from "../services/movie";
 import { ButtonGenre } from "../components/ButtonGenre";
 
-export const LaunchScreen = (props) => {
+export const LaunchScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [genre, setGenre] = useState([]);
   useEffect(() => {
@@ -26,17 +26,8 @@ export const LaunchScreen = (props) => {
     asyncGenre();
   }, []);
 
-  const displayGenderList = (props) => {
-    props.navigation.navigate("Genre");
-  };
-
   const renderItem = ({ item }) => (
-    <ButtonGenre
-      title={item.name}
-      displayGenderList={() => {
-        displayGenderList;
-      }}
-    />
+    <ButtonGenre title={item.name} navigation={navigation} id={item.id} />
   );
 
   return (
