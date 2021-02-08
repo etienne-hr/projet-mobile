@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { Text, View } from "react-native";
 
-export const Search = (props) => {
+export const GenreScreen = (props) => {
   return (
     <View>
       <Text>Search</Text>
