@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   FlatList,
   ActivityIndicator,
+  StyleSheet,
 } from "react-native";
 import { getFilmByGenre } from "../services/movie";
 
@@ -48,3 +49,5 @@ export const GenreScreen = (props) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({});
