@@ -14,19 +14,36 @@ export const GenreScreen = (props) => {
   const { genreId } = props.route.params;
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
+  const [page, setPage] = useState(0);
+  // let page = 0;
 
   useEffect(() => {
-    setIsLoading(true);
     async function asyncGetFilmByGenre() {
-      getFilmByGenre(genreId).then((response) => {
-        setIsLoading(false);
-        setMovies(response.results);
-      });
+      loadingList();
     }
     asyncGetFilmByGenre();
   }, []);
 
-  console.log(movies);
+  const loadingList = () => {
+    setIsLoading(true);
+    getFilmByGenre(genreId, page + 1).then((response) => {
+      setPage(response.page);
+      setTotalPage(response.total_pages);
+      setMovies([...movies, ...response.results]);
+      setIsLoading(false);
+    });
+  };
+
+  //   _loadFilms = () => {
+  //     this.setState({isLoading: true})
+  //     searchMovie(this.state.searchText, this.page + 1)
+  //         .then(data => {
+  //             this.page = data.page;
+  //             this.totalPages = data.total_pages;
+  //             this.setState({filmsState: [...this.state.filmsState, ...data.results], isLoading: false});
+  //         })
+  // }
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
@@ -60,13 +77,18 @@ export const GenreScreen = (props) => {
           <View>
             <ActivityIndicator size="large" color={"#ff0000"} />
           </View>
-        ) : (
-          <FlatList
-            data={movies}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        )}
+        ) : null}
+        <FlatList
+          data={movies}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          onEndReachedThreshold={0.5}
+          onEndReached={() => {
+            if (page < totalPage) {
+              loadingList();
+            }
+          }}
+        />
       </View>
     </SafeAreaView>
   );
