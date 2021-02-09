@@ -16,7 +16,6 @@ export const GenreScreen = (props) => {
   const [movies, setMovies] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(0);
-  // let page = 0;
 
   useEffect(() => {
     async function asyncGetFilmByGenre() {
@@ -34,16 +33,6 @@ export const GenreScreen = (props) => {
       setIsLoading(false);
     });
   };
-
-  //   _loadFilms = () => {
-  //     this.setState({isLoading: true})
-  //     searchMovie(this.state.searchText, this.page + 1)
-  //         .then(data => {
-  //             this.page = data.page;
-  //             this.totalPages = data.total_pages;
-  //             this.setState({filmsState: [...this.state.filmsState, ...data.results], isLoading: false});
-  //         })
-  // }
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
