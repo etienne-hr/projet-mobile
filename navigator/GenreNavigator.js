@@ -14,7 +14,17 @@ export const GenreNavigator = () => {
         name="Home"
         component={LaunchScreen}
       />
-      <Stack.Screen name="Genre" component={GenreScreen} />
+      <Stack.Screen
+        name="Genre"
+        component={GenreScreen}
+        options={({ route }) => ({
+          title: route.params.title,
+          headerStyle: {
+            backgroundColor: "#B00020",
+          },
+          headerTintColor: "#B5A90F",
+        })}
+      />
     </Stack.Navigator>
   );
 };

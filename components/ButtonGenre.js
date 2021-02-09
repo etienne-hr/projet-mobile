@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
 
-const nav = (navigation, id) => {
+const nav = (navigation, id, name) => {
   // console.log(`id: ${id}`);
-  navigation.navigate("Genre", { genreId: id });
+  navigation.navigate("Genre", { genreId: id, title: name });
 };
 
 export const ButtonGenre = (props) => {
@@ -12,7 +12,7 @@ export const ButtonGenre = (props) => {
     <View tyle={styles.TouchableOpacityContainer}>
       <TouchableOpacity
         style={styles.TouchableOpacityContainer}
-        onPress={() => nav(navigation, id)}
+        onPress={() => nav(navigation, id, title)}
       >
         <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>

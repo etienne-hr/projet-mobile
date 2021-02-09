@@ -6,6 +6,7 @@ import {
   FlatList,
   ActivityIndicator,
   StyleSheet,
+  Image,
 } from "react-native";
 import { getFilmByGenre } from "../services/movie";
 
@@ -25,15 +26,36 @@ export const GenreScreen = (props) => {
     asyncGetFilmByGenre();
   }, []);
 
+  console.log(movies);
+
   const renderItem = ({ item }) => (
-    <View>
-      <Text> {item.original_title} </Text>
+    <View style={styles.container}>
+      <Image
+        source={{
+          uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
+        }}
+        style={styles.img}
+      />
+      <View style={styles.text}>
+        <View style={{ padding: 3 }}>
+          <Text style={{ fontWeight: "700" }}> {item.title} </Text>
+        </View>
+        <View style={{ padding: 3 }}>
+          <Text> {item.release_date} </Text>
+        </View>
+        <View style={{ padding: 3 }}>
+          <Text> Réalisateur </Text>
+        </View>
+      </View>
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        {item.vote_average ? <Text> {item.vote_average} </Text> : null}
+      </View>
     </View>
   );
 
   return (
     <SafeAreaView>
-      <View>
+      <View style={{ paddingTop: 50 }}>
         {isLoading ? (
           <View>
             <ActivityIndicator size="large" color={"#ff0000"} />
@@ -50,4 +72,26 @@ export const GenreScreen = (props) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: 110,
+    marginHorizontal: 10,
+    margin: 3,
+    borderRightWidth: 1,
+    borderBottomWidth: 3,
+    borderColor: "#B00020",
+  },
+  text: {
+    flex: 3,
+    paddingLeft: 22,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  img: {
+    flex: 1,
+    width: 100,
+  },
+});
