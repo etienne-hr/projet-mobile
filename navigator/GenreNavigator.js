@@ -3,10 +3,15 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LaunchScreen } from "../screen/LaunchScreen";
 import { GenreScreen } from "../screen/GenreScreen";
+import { DetailScreen } from "../screen/DetailScreen";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+console.log(getFocusedRouteNameFromRoute);
+// console.log(props.route.state.routeNames);
+// const Stack = createStackNavigator();
 
-const Stack = createStackNavigator();
+export const GenreNavigator = (props) => {
+  // const routeName = getFocusedRouteNameFromRoute(props.route) ?? 'Home';
 
-export const GenreNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -24,6 +29,13 @@ export const GenreNavigator = () => {
           },
           headerTintColor: "#B5A90F",
         })}
+      />
+      <Stack.Screen
+        name="Details"
+        component={DetailScreen}
+        options={{
+          tabBarVisible: false,
+        }}
       />
     </Stack.Navigator>
   );

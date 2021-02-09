@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { getFilmByGenre } from "../services/movie";
 
@@ -34,8 +35,13 @@ export const GenreScreen = (props) => {
     });
   };
 
-  const renderItem = ({ item }) => (
-    <View style={styles.container}>
+  const filmListGenre = ({ item }) => (
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        props.navigation.navigate("Details");
+      }}
+    >
       <Image
         source={{
           uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
@@ -56,7 +62,7 @@ export const GenreScreen = (props) => {
       <View style={{ flex: 1, justifyContent: "center" }}>
         {item.vote_average ? <Text> {item.vote_average} </Text> : null}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -69,7 +75,7 @@ export const GenreScreen = (props) => {
         ) : null}
         <FlatList
           data={movies}
-          renderItem={renderItem}
+          renderItem={filmListGenre}
           keyExtractor={(item) => item.id.toString()}
           onEndReachedThreshold={0.5}
           onEndReached={() => {

@@ -21,9 +21,7 @@ export const FilmResult = (props) => {
           </View>
         </View>
         {film.vote_average > 7 && (
-          <View style={{ justifyContent: "center" }}>
-            {/* <Image source={require('../../assets/images/star.png')} style={{width: 30, height: 30}} /> */}
-          </View>
+          <View style={{ justifyContent: "center" }}></View>
         )}
       </View>
     </View>
