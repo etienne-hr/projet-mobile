@@ -39,7 +39,7 @@ export const GenreScreen = (props) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        props.navigation.navigate("Details");
+        props.navigation.navigate("Details", { id: item });
       }}
     >
       <Image
