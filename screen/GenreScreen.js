@@ -20,7 +20,7 @@ export const GenreScreen = (props) => {
 
   useEffect(() => {
     async function asyncGetFilmByGenre() {
-      loadingList();
+      await loadingList();
     }
     asyncGetFilmByGenre();
   }, []);
