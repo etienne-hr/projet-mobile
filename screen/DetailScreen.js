@@ -38,7 +38,6 @@ export const DetailScreen = (props) => {
     time = Math.floor(time / 60) + "h" + rest;
     return time;
   };
-  // console.log(movieDetails);
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={{ height: screen.height / 2.5, width: screen.width }}>
