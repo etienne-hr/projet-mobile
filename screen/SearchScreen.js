@@ -6,6 +6,7 @@ import {
   Text,
   FlatList,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { Search } from "../components/Search";
 import { SearchResult } from "../components/SearchResult";
@@ -72,7 +73,11 @@ export default class SearchScreen extends React.Component {
 
     return (
       <View style={styles.no_found_container}>
-        <Text style={styles.text_no_result}>Aucun film n'a été chargé.</Text>
+        <Image
+          source={require("../assets/bad.png")}
+          style={{ height: 100, width: 100 }}
+        ></Image>
+        <Text style={styles.text_no_result}>Aucune recherche effectuée.</Text>
       </View>
     );
   };
@@ -81,6 +86,14 @@ export default class SearchScreen extends React.Component {
     const { searchText } = this.state;
     return (
       <SafeAreaView style={styles.main_container}>
+        <View style={styles.logoContainer}>
+          <View style={styles.circle}>
+            <Image
+              style={styles.stretch}
+              source={require("../assets/logo.jpg")}
+            />
+          </View>
+        </View>
         <Search
           handleSearch={this.handleSearchText}
           handleClickButton={this._searchFilms}
@@ -108,15 +121,34 @@ const styles = StyleSheet.create({
     // alignItems: 'center'
   },
   text_no_result: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
+    color: "#B5A90F",
   },
   no_found_container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
   },
   loading_container: {
     bottom: 300,
+  },
+  logoContainer: {
+    alignItems: "center",
+  },
+  stretch: {
+    width: 130,
+    height: 130,
+  },
+  circle: {
+    margin: 5,
+    width: 200,
+    height: 200,
+    borderRadius: 100 / 0.5,
+    borderWidth: 6,
+    backgroundColor: "white",
+    borderColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
