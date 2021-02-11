@@ -15,52 +15,45 @@ const screen = Dimensions.get("screen");
 
 export const DetailScreen = (props) => {
   const { route } = props;
-
-  // const [id, setId] = useState();
+  const { id } = route.params;
   const [movieDetails, setMovieDetails] = useState([]);
-  const [time, setTime] = useState();
+  const [time, setTime] = useState(0);
+  const [genre, setGenre] = useState("");
   let rest = 0;
 
   useEffect(() => {
     async function asyncLoadingDetails() {
-      // await loadingDetails();
-      console.log(route.params.id.id);
-      getMovie(route.params.id.id).then((response) => {
+      await getMovie(id).then((response) => {
         setMovieDetails(response);
-        console.log(movieDetails);
-        setTime(movieDetails.runtime);
+        setTime(response.runtime);
+        setGenre(response.genres[0].name);
       });
     }
     asyncLoadingDetails();
   }, []);
-
-  // const loadingDetails = () => {
-  // };
 
   const duration = (time, rest) => {
     rest = time % 60;
     time = Math.floor(time / 60) + "h" + rest;
     return time;
   };
-  // console.log(movieDetails);
+  console.log(movieDetails);
   return (
-    <View style={{ flex: 1 }}>
-      {/* <View style={{ flex: 1 }}> */}
+    <ScrollView style={{ flex: 1 }}>
       <Image
         source={{
           uri: `https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`,
         }}
         style={styles.poster}
       ></Image>
-      {/* </View> */}
       <View style={{ flex: 1 }}>
         <View>
           <Text>{movieDetails.title}</Text>
-          {/* <Text>{movieDetails.genres[0].name}</Text> */}
+          <Text>{genre}</Text>
           <Text>{duration(time, rest)}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
