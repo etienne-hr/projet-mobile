@@ -26,6 +26,9 @@ export const GenreNavigator = (props) => {
             title: route.params.title,
             headerStyle: {
               backgroundColor: "#B00020",
+              borderBottomEndRadius: 30,
+              borderBottomStartRadius: 30,
+              height: 100,
             },
             headerTintColor: "#B5A90F",
           })}
