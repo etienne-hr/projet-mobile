@@ -9,7 +9,6 @@ import {
   Image,
 } from "react-native";
 import { Search } from "../components/Search";
-import { SearchResult } from "../components/SearchResult";
 import { FilmResult } from "../components/FilmResult";
 import { searchMovie } from "../services/movie";
 
@@ -92,7 +91,6 @@ export default class SearchScreen extends React.Component {
   };
 
   render() {
-    const { searchText } = this.state;
     return (
       <SafeAreaView style={styles.main_container}>
         <View style={styles.logoContainer}>
@@ -107,9 +105,6 @@ export default class SearchScreen extends React.Component {
           handleSearch={this.handleSearchText}
           handleClickButton={this._searchFilms}
         />
-        {this.state.searchText !== "" ? (
-          <SearchResult textSearched={searchText} />
-        ) : null}
         {this._renderResult()}
         {this.state.isLoading ? (
           <View style={styles.loading_container}>

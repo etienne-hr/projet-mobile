@@ -50,17 +50,21 @@ export const GenreScreen = (props) => {
       />
       <View style={styles.text}>
         <View style={{ padding: 3 }}>
-          <Text style={{ fontWeight: "700" }}> {item.title} </Text>
+          <Text style={{ fontWeight: "700", color: "#B5A90F" }}>
+            {item.title}
+          </Text>
         </View>
         <View style={{ padding: 3 }}>
-          <Text> {item.release_date} </Text>
+          <Text style={{ color: "#B5A90F" }}> {item.release_date} </Text>
         </View>
         <View style={{ padding: 3 }}>
-          <Text> Réalisateur </Text>
+          <Text style={{ color: "#B5A90F" }}> Réalisateur </Text>
         </View>
       </View>
       <View style={{ flex: 1, justifyContent: "center" }}>
-        {item.vote_average ? <Text> {item.vote_average} </Text> : null}
+        {item.vote_average ? (
+          <Text style={{ color: "#B00020" }}> {item.vote_average} </Text>
+        ) : null}
       </View>
     </TouchableOpacity>
   );
@@ -91,7 +95,6 @@ export const GenreScreen = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     height: 110,

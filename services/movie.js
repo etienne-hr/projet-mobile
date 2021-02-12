@@ -18,22 +18,6 @@ export function getMovie(id) {
   ).then((result) => result.json());
 }
 
-export function getTopRated() {
-  return fetch(
-    getApiUrl(`/movie/top_rated`, {
-      language: "fr-FR",
-    })
-  ).then((result) => result.json());
-}
-
-export function getLatest() {
-  return fetch(
-    getApiUrl("/movie/latest", {
-      language: "fr-FR",
-    })
-  ).then((result) => result.json());
-}
-
 export function getGenre() {
   return fetch(
     getApiUrl("/genre/movie/list", {
