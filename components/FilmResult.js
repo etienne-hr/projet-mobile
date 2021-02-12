@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const FilmResult = (props) => {
   const { film } = props;
   return (
-    <View style={styles.main_container}>
+    <TouchableOpacity style={styles.main_container}>
       <View style={styles.main_information_container}>
         <Image
           source={{
@@ -24,7 +25,7 @@ export const FilmResult = (props) => {
           <View style={{ justifyContent: "center" }}></View>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
