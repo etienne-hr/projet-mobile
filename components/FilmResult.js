@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const FilmResult = (props) => {
-  const { film } = props;
+  const { film, goToDetail } = props;
   return (
-    <TouchableOpacity style={styles.main_container}>
+    <TouchableOpacity style={styles.main_container} onPress={goToDetail}>
       <View style={styles.main_information_container}>
         <Image
           source={{
