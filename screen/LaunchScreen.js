@@ -38,7 +38,7 @@ export const LaunchScreen = ({ navigation }) => {
         <View style={styles.circle}>
           <Image
             style={styles.stretch}
-            source={require("../assets/logo.jpg")}
+            source={require("../assets/logo.png")}
           />
         </View>
       </View>
@@ -79,16 +79,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   stretch: {
-    width: 130,
-    height: 130,
+    width: 170,
+    height: 170,
   },
   circle: {
     width: 200,
     height: 200,
     borderRadius: 100 / 0.5,
-    borderWidth: 6,
+    borderWidth: 10,
     backgroundColor: "white",
-    borderColor: "red",
+    borderColor: "#b00020",
     justifyContent: "center",
     alignItems: "center",
   },
