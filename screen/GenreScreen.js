@@ -10,9 +10,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getFilmByGenre } from "../services/movie";
+import { FilmListGenre } from "../components/FilmListGenre";
 
 export const GenreScreen = (props) => {
   const { genreId } = props.route.params;
+  const { navigation } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
@@ -35,40 +37,6 @@ export const GenreScreen = (props) => {
     });
   };
 
-  const filmListGenre = ({ item }) => (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => {
-        props.navigation.navigate("Details", { id: item.id });
-      }}
-    >
-      <Image
-        source={{
-          uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
-        }}
-        style={styles.img}
-      />
-      <View style={styles.text}>
-        <View style={{ padding: 3 }}>
-          <Text style={{ fontWeight: "700", color: "#B5A90F" }}>
-            {item.title}
-          </Text>
-        </View>
-        <View style={{ padding: 3 }}>
-          <Text style={{ color: "#B5A90F" }}> {item.release_date} </Text>
-        </View>
-        <View style={{ padding: 3 }}>
-          <Text style={{ color: "#B5A90F" }}> Réalisateur </Text>
-        </View>
-      </View>
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        {item.vote_average ? (
-          <Text style={{ color: "#B00020" }}> {item.vote_average} </Text>
-        ) : null}
-      </View>
-    </TouchableOpacity>
-  );
-
   return (
     <SafeAreaView>
       <View style={{ paddingTop: 50 }}>
@@ -79,7 +47,16 @@ export const GenreScreen = (props) => {
         ) : null}
         <FlatList
           data={movies}
-          renderItem={filmListGenre}
+          renderItem={({ item }) => (
+            <FilmListGenre
+              film={item}
+              goToDetail={() =>
+                navigation.navigate("Details", {
+                  id: item.id,
+                })
+              }
+            />
+          )}
           keyExtractor={(item) => item.id.toString()}
           onEndReachedThreshold={0.5}
           onEndReached={() => {
@@ -92,26 +69,3 @@ export const GenreScreen = (props) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    height: 110,
-    marginHorizontal: 10,
-    margin: 3,
-    borderRightWidth: 1,
-    borderBottomWidth: 3,
-    borderColor: "#B00020",
-  },
-  text: {
-    flex: 3,
-    paddingLeft: 22,
-    justifyContent: "center",
-    alignItems: "flex-start",
-  },
-  img: {
-    flex: 1,
-    width: 100,
-  },
-});

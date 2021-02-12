@@ -1,7 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { LaunchScreen } from "../screen/LaunchScreen";
-// import SearchScreen from "../screen/SearchScreen";
 import { SearchNavigator } from "./SearchNavigator";
 import { Ionicons } from "@expo/vector-icons";
 

@@ -4,8 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { GenreScreen } from "../screen/GenreScreen";
 import { DetailScreen } from "../screen/DetailScreen";
 import TabNavigator from "./TabNavigator";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { BackGreenButton } from "../components/BackGreenButton";
 import { BackRedButton } from "../components/BackRedButton";
 
 const Stack = createStackNavigator();
@@ -22,14 +23,33 @@ export const GenreNavigator = (props) => {
         <Stack.Screen
           name="Genre"
           component={GenreScreen}
-          options={({ route }) => ({
+          options={({ route, navigation }) => ({
             title: route.params.title,
+            headerLeft: (props) => (
+              <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginLeft: 10,
+                  }}
+                >
+                  <BackGreenButton />
+                </View>
+              </TouchableOpacity>
+            ),
             headerStyle: {
               backgroundColor: "#B00020",
               borderBottomEndRadius: 30,
               borderBottomStartRadius: 30,
               height: 100,
             },
+            headerTitleStyle: {
+              fontWeight: "500",
+              fontSize: 40,
+            },
+            headerTitleAlign: "center",
             headerTintColor: "#B5A90F",
           })}
         />

@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "../screen/SearchScreen";
 import { DetailScreen } from "../screen/DetailScreen";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { BackRedButton } from "../components/BackRedButton";
 
